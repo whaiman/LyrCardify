@@ -22,3 +22,95 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# React
+node_modules/
+/.pnp
+.pnp.js
+/coverage
+/build
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.eslintcache
+.stylelintcache
+
+# Node.js
+coverage/
+.npm
+.yarn-integrity
+.env
+.env.test
+.cache
+.parcel-cache
+.next
+.nuxt
+dist/
+.serverless/
+
+# Log Files
+*.log.*
+logs/
+log/
+/logs
+/log
+
+# Temporary Files
+*.tmp
+*.temp
+tmp/
+temp/
+~*
+*~
+
+# Backup Files
+*.bak
+*.backup
+*.orig
+*.swp
+*.swo
+
+# Cache Files
+*.cache
+.cache/
+cache/
+**/cache/
+.npm/
+.yarn/
+
+# OS Generated
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# IDE Files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+.vs/
+
+# Dependencies
+vendor/
+packages/
+
+# Environment
+.env.*
+!.env.example
+.envrc
+.environment
+
+# Build Output
+build/
+out/
+*.min.*
+*.map
+
+# Documentation
+docs/_build/
+*.pdf
+*.docx
+*.pptx
