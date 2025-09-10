@@ -1,0 +1,41 @@
+.lyrics-input {
+    width: 100%;
+}
+
+.lyrics-textarea {
+    width: 100%;
+    height: 200px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .lyrics-textarea {
+        height: 150px;
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .lyrics-textarea {
+        height: 120px;
+        font-size: 0.85rem;
+    }
+}
+
+.lyrics-tips {
+    margin-top: 8px;
+    color: #777;
+    font-size: 0.85rem;
+}
+
+@media (max-width: 480px) {
+    .lyrics-tips {
+        font-size: 0.8rem;
+    }
+}

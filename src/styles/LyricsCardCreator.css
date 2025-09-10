@@ -1,0 +1,118 @@
+.lyrics-card-creator {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px;
+}
+
+@media (max-width: 1024px) {
+    .lyrics-card-creator {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .lyrics-card-creator {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 8px;
+    }
+}
+
+.editor-panel,
+.preview-panel {
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    transition: background-color 0.3s ease;
+}
+
+@media (max-width: 768px) {
+
+    .editor-panel,
+    .preview-panel {
+        padding: 16px;
+    }
+}
+
+.editor-panel h2,
+.preview-panel h2 {
+    margin-top: 0;
+    margin-bottom: 24px;
+    color: var(--text);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+
+    .editor-panel h2,
+    .preview-panel h2 {
+        font-size: 1.25rem;
+        margin-bottom: 16px;
+    }
+}
+
+.section {
+    margin-bottom: 24px;
+}
+
+.section h3 {
+    font-size: 1.1rem;
+    color: var(--text);
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .section {
+        margin-bottom: 16px;
+    }
+
+    .section h3 {
+        font-size: 1rem;
+    }
+}
+
+.export-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 24px;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    margin-top: 12px;
+    min-height: 48px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.export-button:hover:not(:disabled) {
+    background-color: #1ed760;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .export-button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+.error-message {
+    color: #e74c3c;
+    margin-top: 8px;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .error-message {
+        font-size: 0.8rem;
+    }
+}

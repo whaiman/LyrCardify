@@ -1,0 +1,87 @@
+.about-page {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about-page h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 24px;
+}
+
+.about-page section {
+    margin-bottom: 32px;
+}
+
+.about-page h2 {
+    font-size: 1.5rem;
+    color: #555;
+    margin-bottom: 16px;
+}
+
+.about-page p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.8;
+}
+
+.about-page ol {
+    padding-left: 20px;
+    color: #666;
+}
+
+.about-page li {
+    margin-bottom: 8px;
+}
+
+.about-page code {
+    background-color: #f5f5f5;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .about-page {
+        padding: 16px;
+    }
+
+    .about-page h1 {
+        font-size: 1.5rem;
+    }
+
+    .about-page h2 {
+        font-size: 1.2rem;
+    }
+
+    .about-page p {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-page {
+        padding: 12px;
+    }
+
+    .about-page h1 {
+        font-size: 1.25rem;
+    }
+
+    .about-page h2 {
+        font-size: 1.1rem;
+    }
+
+    .about-page p {
+        font-size: 0.85rem;
+        line-height: 1.6;
+    }
+
+    .about-page code {
+        font-size: 0.8rem;
+    }
+}
