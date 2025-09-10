@@ -30,21 +30,34 @@ LyrCardify is built with **React** and **Vite**, offering a fast and modern deve
 To get started with LyrCardify, follow these steps:
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/whaiman/LyrCardify.git
    ```
 
 2. Navigate to the project directory:
+
    ```bash
    cd LyrCardify
    ```
 
 3. Install dependencies:
+
    ```bash
    npm install
    ```
 
-4. Start the development server:
+4. Create a `.env` file in the root directory and add the following environment variables:
+
+   ```bash
+   VITE_SPOTIFY_CLIENT_ID=your_spotify_client_id
+   VITE_SPOTIFY_CLIENT_SECRET=your_spotify_client_secret
+   ```
+
+   Replace `your_spotify_client_id` and `your_spotify_client_secret` with your actual Spotify API credentials.
+
+5. Start the development server:
+
    ```bash
    npm run dev
    ```
@@ -57,6 +70,7 @@ To get started with LyrCardify, follow these steps:
 4. Save or share your lyrics card directly from the app.
 
 For production builds:
+
 ```bash
 npm run build
 ```
@@ -67,17 +81,23 @@ Contributions are welcome! To contribute to LyrCardify:
 
 1. Fork the repository.
 2. Create a new branch:
+
    ```bash
    git checkout -b feature/your-feature-name
    ```
+
 3. Make your changes and commit them:
+
    ```bash
    git commit -m "Add your feature description"
    ```
+
 4. Push to your branch:
+
    ```bash
    git push origin feature/your-feature-name
    ```
+
 5. Open a pull request.
 
 For major changes, please open an issue first to discuss what you would like to change.
