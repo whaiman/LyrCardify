@@ -1,8 +1,8 @@
 # LyrCardify
 
-![LyrCardify Preview](https://via.placeholder.com/800x400.png?text=LyrCardify+Preview)
-
 LyrCardify is a web application that allows you to create beautiful, Spotify-inspired lyrics cards. Share your favorite song lyrics with stunning visuals, perfect for social media or personal collections.
+
+[Русская версия документации](README.ru.md)
 
 ## Table of Contents
 
