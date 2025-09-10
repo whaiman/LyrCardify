@@ -1,14 +1,87 @@
 # LyrCardify
 
-# React + Vite
+![LyrCardify Preview](https://via.placeholder.com/800x400.png?text=LyrCardify+Preview)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+LyrCardify is a web application that allows you to create beautiful, Spotify-inspired lyrics cards. Share your favorite song lyrics with stunning visuals, perfect for social media or personal collections.
 
-Currently, two official plugins are available:
+## Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [About](#about)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Expanding the ESLint configuration
+## About
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+LyrCardify is built with **React** and **Vite**, offering a fast and modern development experience with Hot Module Replacement (HMR) and ESLint for clean code. This project is designed to help users create visually appealing lyrics cards with customizable backgrounds, fonts, and layouts, mimicking the aesthetic of Spotify's lyrics sharing feature.
+
+## Features
+
+- 🎵 Create Spotify-style lyrics cards with ease
+- 🖌️ Customize fonts, colors, and backgrounds
+- 📱 Responsive design for mobile and desktop
+- ⚡ Fast development with Vite's HMR
+- ✅ ESLint rules for consistent code quality
+
+## Installation
+
+To get started with LyrCardify, follow these steps:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/whaiman/LyrCardify.git
+   ```
+
+2. Navigate to the project directory:
+   ```bash
+   cd LyrCardify
+   ```
+
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+## Usage
+
+1. Open the application in your browser (usually at `http://localhost:5173`).
+2. Enter the lyrics you want to feature on your card.
+3. Customize the card's appearance using the provided options (e.g., fonts, colors, backgrounds).
+4. Save or share your lyrics card directly from the app.
+
+For production builds:
+```bash
+npm run build
+```
+
+## Contributing
+
+Contributions are welcome! To contribute to LyrCardify:
+
+1. Fork the repository.
+2. Create a new branch:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+3. Make your changes and commit them:
+   ```bash
+   git commit -m "Add your feature description"
+   ```
+4. Push to your branch:
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+5. Open a pull request.
+
+For major changes, please open an issue first to discuss what you would like to change.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
