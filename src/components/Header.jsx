@@ -1,19 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import '../styles/Header.css';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useLanguage } from '../contexts/LanguageContext';
+import "../styles/Header.css";
 
 const Header = () => {
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'light');
+  const { t, language, toggleLanguage } = useLanguage();
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
   }, [theme]);
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    setTheme(savedTheme);
-  }, []);
 
   const toggleTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
@@ -31,11 +28,17 @@ const Header = () => {
       </div>
       <nav className="main-nav">
         <ul>
-          <li><Link to="/" className="nav-link">Создать карточку</Link></li>
-          <li><Link to="/about" className="nav-link">О проекте</Link></li>
+          <li><Link to="/" className="nav-link">{t.nav.create}</Link></li>
+          <li><Link to="/about" className="nav-link">{t.nav.about}</Link></li>
+          <li><Link to="/settings" className="nav-link settings-icon" title={t.nav.settings}>⚙️</Link></li>
           <li>
-            <button onClick={toggleTheme} className="theme-toggle">
-              {theme === 'light' ? '🌙 Темная' : '☀️ Светлая'}
+            <button onClick={toggleTheme} className="theme-toggle" title={theme === 'light' ? t.nav.theme.dark : t.nav.theme.light}>
+              {theme === 'light' ? '🌙' : '☀️'}
+            </button>
+          </li>
+          <li>
+            <button onClick={toggleLanguage} className="theme-toggle lang-toggle">
+              {t.header.toggleLang}
             </button>
           </li>
         </ul>

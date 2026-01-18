@@ -1,118 +1,151 @@
+/* LyricsCardCreator.css */
 .lyrics-card-creator {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    max-width: 1200px;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 60px;
+    max-width: 1500px;
     margin: 0 auto;
-    padding: 16px;
+    padding: 60px 40px;
+    align-items: start;
 }
 
-@media (max-width: 1024px) {
-    .lyrics-card-creator {
-        grid-template-columns: 1fr;
-        gap: 16px;
-        padding: 12px;
-    }
+.editor-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
 }
 
-@media (max-width: 768px) {
-    .lyrics-card-creator {
-        grid-template-columns: 1fr;
-        gap: 12px;
-        padding: 8px;
-    }
-}
-
-.editor-panel,
-.preview-panel {
-    background: var(--card-bg);
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 24px;
-    transition: background-color 0.3s ease;
-}
-
-@media (max-width: 768px) {
-
-    .editor-panel,
-    .preview-panel {
-        padding: 16px;
-    }
-}
-
-.editor-panel h2,
-.preview-panel h2 {
-    margin-top: 0;
-    margin-bottom: 24px;
-    color: var(--text);
-    font-size: 1.5rem;
-    font-weight: 600;
-}
-
-@media (max-width: 768px) {
-
-    .editor-panel h2,
-    .preview-panel h2 {
-        font-size: 1.25rem;
-        margin-bottom: 16px;
-    }
+.editor-panel h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: -0.04em;
+    background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.4) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .section {
-    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+    animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.section:nth-child(2) { animation-delay: 0.1s; }
+.section:nth-child(3) { animation-delay: 0.2s; }
+.section:nth-child(4) { animation-delay: 0.3s; }
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .section h3 {
     font-size: 1.1rem;
-    color: var(--text);
-    margin-bottom: 12px;
-    font-weight: 500;
+    font-weight: 700;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
-@media (max-width: 768px) {
-    .section {
-        margin-bottom: 16px;
-    }
+.section h3::before {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--primary-color);
+}
 
-    .section h3 {
-        font-size: 1rem;
-    }
+.preview-panel {
+    position: sticky;
+    top: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+}
+
+.preview-panel h2 {
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    opacity: 0.4;
+    margin: 0;
 }
 
 .export-button {
-    background-color: var(--primary-color);
-    color: white;
+    background: var(--primary-color);
+    color: #000;
     border: none;
-    border-radius: 24px;
-    padding: 12px 24px;
-    font-size: 1rem;
-    font-weight: 600;
-    width: 100%;
-    margin-top: 12px;
-    min-height: 48px;
-    transition: transform 0.2s ease, background-color 0.2s ease;
+    border-radius: 16px;
+    padding: 20px 40px;
+    font-size: 1.1rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 10px 30px rgba(29, 185, 84, 0.2);
+    margin-top: 20px;
 }
 
 .export-button:hover:not(:disabled) {
-    background-color: #1ed760;
-    transform: translateY(-2px);
+    transform: translateY(-4px) scale(1.02);
+    background: #1ed760;
+    box-shadow: 0 15px 40px rgba(29, 185, 84, 0.3);
 }
 
-@media (max-width: 768px) {
-    .export-button {
-        padding: 10px 20px;
-        font-size: 0.9rem;
-    }
+.export-button:active:not(:disabled) {
+    transform: translateY(2px);
+}
+
+.export-button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    background: #333;
+    color: #666;
 }
 
 .error-message {
-    color: #e74c3c;
-    margin-top: 8px;
+    background: rgba(255, 68, 68, 0.1);
+    border-left: 4px solid #ff4444;
+    padding: 12px 16px;
+    border-radius: 8px;
+    color: #ff4444;
     font-size: 0.9rem;
+    font-weight: 600;
 }
 
-@media (max-width: 768px) {
-    .error-message {
-        font-size: 0.8rem;
+@media (max-width: 1100px) {
+    .lyrics-card-creator {
+        grid-template-columns: 1fr;
+        gap: 60px;
+        padding: 40px 20px;
+    }
+
+    .preview-panel {
+        position: static;
+        order: -1;
+    }
+    
+    .editor-panel h2 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .lyrics-card-creator {
+        padding: 30px 15px;
     }
 }

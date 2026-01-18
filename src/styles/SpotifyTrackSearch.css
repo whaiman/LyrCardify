@@ -1,3 +1,4 @@
+/* SpotifyTrackSearch.css */
 .spotify-track-search {
     width: 100%;
 }
@@ -5,58 +6,82 @@
 .input-group {
     display: flex;
     gap: 8px;
-    flex-wrap: wrap;
+    background: var(--bg);
+    padding: 6px;
+    border-radius: 16px;
+    border: 2px solid var(--glass-border);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input-group:focus-within {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(29, 185, 84, 0.1);
+    transform: translateY(-2px);
+}
+
+.track-url-input {
+    flex: 1;
+    padding: 12px 18px;
+    border: none;
+    background: transparent;
+    font-size: 1rem;
+    min-width: 0;
+    color: var(--text);
+    outline: none;
+    font-weight: 500;
+}
+
+.track-url-input::placeholder {
+    color: var(--text);
+    opacity: 0.3;
+}
+
+.fetch-button {
+    background-color: var(--primary-color);
+    color: black;
+    border: none;
+    border-radius: 12px;
+    padding: 0 24px;
+    font-weight: 700;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 0.9rem;
+}
+
+.fetch-button:hover:not(:disabled) {
+    background-color: #1ed760;
+    box-shadow: 0 4px 12px rgba(29, 185, 84, 0.2);
+}
+
+.fetch-button:disabled {
+    opacity: 0.5;
+    background-color: #444;
+    color: #888;
+    cursor: not-allowed;
+}
+
+.url-examples {
+    margin-top: 10px;
+    padding-left: 10px;
+    opacity: 0.4;
+    font-size: 0.8rem;
+    font-weight: 500;
 }
 
 @media (max-width: 480px) {
     .input-group {
         flex-direction: column;
-        gap: 12px;
+        padding: 8px;
+        gap: 6px;
     }
-}
-
-.track-url-input {
-    flex: 1;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem;
-    min-width: 0;
-}
-
-@media (max-width: 480px) {
-    .track-url-input {
-        padding: 10px;
-        font-size: 0.9rem;
-    }
-}
-
-.fetch-button {
-    background-color: #1DB954;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 0 16px;
-    font-weight: 500;
-    white-space: nowrap;
-}
-
-@media (max-width: 480px) {
+    
     .fetch-button {
-        padding: 10px 20px;
-        font-size: 0.9rem;
         width: 100%;
+        padding: 14px;
     }
-}
-
-.url-examples {
-    margin-top: 8px;
-    color: #777;
-    font-size: 0.85rem;
-}
-
-@media (max-width: 480px) {
-    .url-examples {
-        font-size: 0.8rem;
+    
+    .track-url-input {
+        padding: 10px 14px;
     }
 }

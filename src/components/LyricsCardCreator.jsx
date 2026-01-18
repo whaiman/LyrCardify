@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import html2canvas from 'html2canvas';
+import { useLanguage } from '../contexts/LanguageContext';
 import SpotifyTrackSearch from './SpotifyTrackSearch';
 import LyricsInput from './LyricsInput';
 import CardStyleOptions from './CardStyleOptions';
@@ -8,6 +9,7 @@ import { fetchSpotifyTrackData } from '../services/spotifyApi';
 import '../styles/LyricsCardCreator.css';
 
 const LyricsCardCreator = () => {
+  const { t } = useLanguage();
   const [trackData, setTrackData] = useState({
     image: null,
     artist: '',
@@ -15,17 +17,20 @@ const LyricsCardCreator = () => {
     album: '',
     loaded: false,
   });
+  // ... (rest of state)
   const [lyrics, setLyrics] = useState('');
   const [cardStyle, setCardStyle] = useState({
     bgColor: '#191414',
     gradient: '#1DB954',
+    bgMode: 'dynamic',
+    backgroundImage: null,
     textColor: '#FFFFFF',
     fontSize: 16,
     fontFamily: 'Inter, sans-serif',
     cardFormat: 'square',
     imageFilter: 'none',
-    shadowIntensity: 0.25,
-    blur: false,
+    shadowIntensity: 0.4,
+    blur: true,
     textShadow: true,
   });
   const [isLoading, setIsLoading] = useState(false);
@@ -36,9 +41,10 @@ const LyricsCardCreator = () => {
 
   const handleFetchTrack = async (trackUrl) => {
     if (!trackUrl) {
-      setError('Please enter a valid Spotify track URL');
+      setError(t.creator.error);
       return;
     }
+    // ...
     setIsLoading(true);
     setError('');
 
@@ -54,7 +60,7 @@ const LyricsCardCreator = () => {
         });
       }
     } catch (err) {
-      setError(`Failed to fetch track data: ${err.message}`);
+      setError(`${t.creator.fetchError}: ${err.message}`);
     } finally {
       setIsLoading(false);
     }
@@ -68,15 +74,16 @@ const LyricsCardCreator = () => {
     setCardStyle((prevStyle) => ({ ...prevStyle, ...styleUpdates }));
   };
 
+  // ... (exportCard logic remains same)
+
     const exportCard = async () => {
       if (!cardRef.current) return;
 
       try {
         setIsLoading(true);
-        setDisableAnimations(true); // Отключаем анимации перед рендерингом
+        setDisableAnimations(true);
         cardRef.current.scrollTop = 0;
 
-        // Ждем завершения обновления DOM
         await new Promise((resolve) => setTimeout(resolve, 100));
 
         const canvas = await html2canvas(cardRef.current, {
@@ -95,29 +102,29 @@ const LyricsCardCreator = () => {
         setError(`Failed to export image: ${err.message}`);
       } finally {
         setIsLoading(false);
-        setDisableAnimations(false); // Восстанавливаем анимации
+        setDisableAnimations(false);
       }
     };
 
   return (
     <div className="lyrics-card-creator">
       <div className="editor-panel fade-in">
-        <h2>Create Your Lyrics Card</h2>
+        <h2>{t.creator.title}</h2>
 
         <section className="section">
-          <h3>1. Search Spotify Track</h3>
-          <SpotifyTrackSearch onFetchTrack={handleFetchTrack} isLoading={isLoading} />
+          <h3>{t.creator.step1}</h3>
+          <SpotifyTrackSearch onFetchTrack={handleFetchTrack} isLoading={isLoading} t={t} />
           {error && <div className="error-message">{error}</div>}
         </section>
 
         <section className="section">
-          <h3>2. Enter Lyrics</h3>
-          <LyricsInput onLyricsChange={handleLyricsChange} value={lyrics} />
+          <h3>{t.creator.step2}</h3>
+          <LyricsInput onLyricsChange={handleLyricsChange} value={lyrics} t={t} />
         </section>
 
         <section className="section">
-          <h3>3. Customize Style</h3>
-          <CardStyleOptions cardStyle={cardStyle} onStyleChange={handleStyleChange} />
+          <h3>{t.creator.step3}</h3>
+          <CardStyleOptions cardStyle={cardStyle} onStyleChange={handleStyleChange} t={t} />
         </section>
 
         <button
@@ -125,7 +132,7 @@ const LyricsCardCreator = () => {
           onClick={exportCard}
           disabled={!trackData.loaded || !lyrics || isLoading}
         >
-          {isLoading ? 'Exporting...' : 'Export as Image'}
+          {isLoading ? t.creator.exporting : t.creator.export}
         </button>
       </div>
 

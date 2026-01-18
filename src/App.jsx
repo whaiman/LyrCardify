@@ -4,6 +4,7 @@ import LyricsCardCreator from './components/LyricsCardCreator';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import About from './components/About';
+import Settings from './components/Settings';
 import './App.css';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LyricsCardCreator />} />
           <Route path="/about" element={<About />} />
+          <Route path="/settings" element={<Settings />} />
         </Routes>
       </main>
       <Footer />

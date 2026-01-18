@@ -2,13 +2,25 @@ const SPOTIFY_CLIENT_ID = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
 const SPOTIFY_CLIENT_SECRET = import.meta.env.VITE_SPOTIFY_CLIENT_SECRET;
 
 export async function getSpotifyAccessToken() {
+  const localId = localStorage.getItem("spotify_client_id");
+  const localSecret = localStorage.getItem("spotify_client_secret");
+
+  const clientId = localId || SPOTIFY_CLIENT_ID;
+  const clientSecret = localSecret || SPOTIFY_CLIENT_SECRET;
+
+  if (!clientId || !clientSecret) {
+    throw new Error(
+      "Spotify API keys are not configured. Please go to Settings.",
+    );
+  }
+
   try {
     const cachedToken = getStoredToken();
     if (cachedToken) {
       console.log("Используется кэшированный токен");
       return cachedToken;
     }
-    const authString = `${SPOTIFY_CLIENT_ID}:${SPOTIFY_CLIENT_SECRET}`;
+    const authString = `${clientId}:${clientSecret}`;
     const base64Auth = btoa(authString);
 
     console.log("Запрос токена...");

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 import '../styles/SpotifyTrackSearch.css';
 
 const SpotifyTrackSearch = ({ onFetchTrack, isLoading }) => {
+  const { t } = useLanguage();
   const [trackUrl, setTrackUrl] = useState('');
 
   const handleSubmit = (e) => {
@@ -19,7 +21,7 @@ const SpotifyTrackSearch = ({ onFetchTrack, isLoading }) => {
             type="text"
             value={trackUrl}
             onChange={(e) => setTrackUrl(e.target.value)}
-            placeholder="https://open.spotify.com/track/... или spotify:track:..."
+            placeholder={t?.creator?.searchPlaceholder || "Paste Spotify Link..."}
             className="track-url-input"
             disabled={isLoading}
           />
@@ -28,12 +30,12 @@ const SpotifyTrackSearch = ({ onFetchTrack, isLoading }) => {
             className="fetch-button"
             disabled={isLoading || !trackUrl.trim()}
           >
-            {isLoading ? 'Загрузка...' : 'Получить данные'}
+            {isLoading ? (t?.creator?.searching || 'Searching...') : (t?.creator?.searchButton || 'Received Data')}
           </button>
         </div>
       </form>
       <div className="url-examples">
-        <small>Примеры: https://open.spotify.com/track/ID или spotify:track:ID</small>
+        <small>Example: https://open.spotify.com/track/ID or spotify:track:ID</small>
       </div>
     </div>
   );
