@@ -9,10 +9,7 @@
     font-size: 2.5rem;
     font-weight: 800;
     margin-bottom: 12px;
-    background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.4) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--text);
 }
 
 .settings-page .description {
@@ -50,8 +47,8 @@
 }
 
 .settings-page input {
-    background: rgba(255, 255, 255, 0.05);
-    border: 2px solid rgba(255, 255, 255, 0.1);
+    background: var(--input-bg);
+    border: 2px solid var(--glass-border);
     border-radius: 12px;
     padding: 14px 20px;
     color: var(--text);
@@ -63,7 +60,7 @@
 
 .settings-page input:focus {
     border-color: var(--primary-color);
-    background: rgba(255, 255, 255, 0.08);
+    background: var(--subgroup-bg);
     box-shadow: 0 0 0 4px rgba(29, 185, 84, 0.1);
 }
 
@@ -124,7 +121,8 @@
     margin-top: 60px;
     padding: 32px;
     border-radius: 24px;
-    background: rgba(255, 255, 255, 0.02);
+    background: var(--subgroup-bg);
+    border: 1px solid var(--glass-border);
 }
 
 .how-to h2 {

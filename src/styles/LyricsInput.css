@@ -1,6 +1,6 @@
 /* LyricsInput.css */
 .lyrics-input-container {
-    background: var(--bg);
+    background: var(--input-bg);
     border: 2px solid var(--glass-border);
     border-radius: 16px;
     padding: 2px;
@@ -48,7 +48,7 @@
 }
 
 .lyrics-input-container .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--glass-border);
     border-radius: 10px;
 }
 

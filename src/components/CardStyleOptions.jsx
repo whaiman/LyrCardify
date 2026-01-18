@@ -1,8 +1,8 @@
 import React from 'react';
 import '../styles/CardStyleOptions.css';
 
-const CardStyleOptions = ({ cardStyle, onStyleChange, t }) => {
-  const safeT = t || { style: { formats: {}, filters: {}, groups: {} } };
+const CardStyleOptions = ({ cardStyle, onStyleChange, t, onAutoColor }) => {
+  const safeT = t || { style: { formats: {}, filters: {}, groups: {}, presetList: {} } };
 
   const fontFamilies = [
     { value: 'Inter, sans-serif', label: 'Inter' },
@@ -40,6 +40,34 @@ const CardStyleOptions = ({ cardStyle, onStyleChange, t }) => {
     { value: 'custom', label: safeT.style?.bgModes?.custom || 'Custom' },
   ];
 
+  const presets = [
+    {
+      id: 'classic',
+      label: safeT.style?.presetList?.classic || 'Classic',
+      style: { bgColor: '#191414', gradient: '#1DB954', textColor: '#FFFFFF', blur: true, shadowIntensity: 0.4, textShadow: true, fontFamily: 'Inter, sans-serif' }
+    },
+    {
+      id: 'modern',
+      label: safeT.style?.presetList?.modern || 'Modern',
+      style: { bgColor: '#FFFFFF', gradient: '#F0F0F0', textColor: '#000000', blur: false, shadowIntensity: 0.1, textShadow: false, fontFamily: 'Montserrat, sans-serif', fontSize: 20 }
+    },
+    {
+      id: 'neon',
+      label: safeT.style?.presetList?.neon || 'Neon',
+      style: { bgColor: '#000000', gradient: '#FF00FF', textColor: '#00FFFF', blur: true, shadowIntensity: 0.8, textShadow: true, fontFamily: 'Oswald, sans-serif', imageFilter: 'contrast(150%) brightness(120%)' }
+    },
+    {
+      id: 'retro',
+      label: safeT.style?.presetList?.retro || 'Retro',
+      style: { bgColor: '#F4E4BC', gradient: '#D2B48C', textColor: '#3E2723', blur: false, shadowIntensity: 0.3, textShadow: false, fontFamily: 'Playfair Display, serif', imageFilter: 'sepia(50%)' }
+    },
+    {
+      id: 'minimal',
+      label: safeT.style?.presetList?.minimal || 'Minimal',
+      style: { bgColor: '#121212', gradient: '#121212', textColor: '#888888', blur: true, shadowIntensity: 0, textShadow: false, fontFamily: 'Inter, sans-serif', fontSize: 14 }
+    }
+  ];
+
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -53,6 +81,22 @@ const CardStyleOptions = ({ cardStyle, onStyleChange, t }) => {
 
   return (
     <div className="card-style-options fade-in">
+      {/* PRESETS GROUP */}
+      <div className="style-subgroup">
+        <h4 className="subgroup-title">{safeT.style?.groups?.presets || 'Presets'}</h4>
+        <div className="presets-grid">
+          {presets.map((preset) => (
+            <button 
+              key={preset.id} 
+              className={`preset-btn ${cardStyle.activePreset === preset.id ? 'active' : ''}`}
+              onClick={() => onStyleChange({ ...preset.style, activePreset: preset.id })}
+            >
+              {preset.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
       {/* BACKGROUND GROUP */}
       <div className="style-subgroup">
         <h4 className="subgroup-title">{safeT.style?.groups?.background || 'Background'}</h4>
@@ -68,13 +112,19 @@ const CardStyleOptions = ({ cardStyle, onStyleChange, t }) => {
                     name="bgMode"
                     value={mode.value}
                     checked={cardStyle.bgMode === mode.value}
-                    onChange={() => onStyleChange({ bgMode: mode.value })}
+                    onChange={() => onStyleChange({ bgMode: mode.value, activePreset: null })}
                   />
                   {mode.label}
                 </label>
               ))}
             </div>
           </div>
+        </div>
+
+        <div className="style-row">
+            <button className="auto-color-btn" onClick={onAutoColor}>
+                ✨ {safeT.style?.autoColor || 'Auto Color from Art'}
+            </button>
         </div>
 
         {cardStyle.bgMode === 'color' && (
@@ -84,7 +134,7 @@ const CardStyleOptions = ({ cardStyle, onStyleChange, t }) => {
               <input
                 type="color"
                 value={cardStyle.bgColor}
-                onChange={(e) => onStyleChange({ bgColor: e.target.value })}
+                onChange={(e) => onStyleChange({ bgColor: e.target.value, activePreset: null })}
                 className="color-picker"
               />
             </div>
@@ -93,7 +143,7 @@ const CardStyleOptions = ({ cardStyle, onStyleChange, t }) => {
               <input
                 type="color"
                 value={cardStyle.gradient || cardStyle.bgColor}
-                onChange={(e) => onStyleChange({ gradient: e.target.value })}
+                onChange={(e) => onStyleChange({ gradient: e.target.value, activePreset: null })}
                 className="color-picker"
               />
             </div>
@@ -128,7 +178,7 @@ const CardStyleOptions = ({ cardStyle, onStyleChange, t }) => {
               <input
                 type="checkbox"
                 checked={cardStyle.blur || false}
-                onChange={(e) => onStyleChange({ blur: e.target.checked })}
+                onChange={(e) => onStyleChange({ blur: e.target.checked, activePreset: null })}
               />
               {safeT.style?.blur || 'Background Blur'}
             </label>
@@ -146,7 +196,7 @@ const CardStyleOptions = ({ cardStyle, onStyleChange, t }) => {
             <input
               type="color"
               value={cardStyle.textColor}
-              onChange={(e) => onStyleChange({ textColor: e.target.value })}
+              onChange={(e) => onStyleChange({ textColor: e.target.value, activePreset: null })}
               className="color-picker"
             />
           </div>
@@ -154,7 +204,7 @@ const CardStyleOptions = ({ cardStyle, onStyleChange, t }) => {
             <label className="input-label">{safeT.style?.fontFamily || 'Font Family'}:</label>
             <select
               value={cardStyle.fontFamily}
-              onChange={(e) => onStyleChange({ fontFamily: e.target.value })}
+              onChange={(e) => onStyleChange({ fontFamily: e.target.value, activePreset: null })}
               className="select-input"
             >
               {fontFamilies.map((font) => (
@@ -175,7 +225,7 @@ const CardStyleOptions = ({ cardStyle, onStyleChange, t }) => {
                 min="12"
                 max="24"
                 value={cardStyle.fontSize}
-                onChange={(e) => onStyleChange({ fontSize: parseInt(e.target.value) })}
+                onChange={(e) => onStyleChange({ fontSize: parseInt(e.target.value), activePreset: null })}
                 className="range-slider"
               />
               <span className="range-value">{cardStyle.fontSize}px</span>
@@ -186,7 +236,7 @@ const CardStyleOptions = ({ cardStyle, onStyleChange, t }) => {
               <input
                 type="checkbox"
                 checked={cardStyle.textShadow || false}
-                onChange={(e) => onStyleChange({ textShadow: e.target.checked })}
+                onChange={(e) => onStyleChange({ textShadow: e.target.checked, activePreset: null })}
               />
               {safeT.style?.textShadow || 'Text Shadow'}
             </label>
@@ -209,7 +259,7 @@ const CardStyleOptions = ({ cardStyle, onStyleChange, t }) => {
                     name="cardFormat"
                     value={format.value}
                     checked={cardStyle.cardFormat === format.value}
-                    onChange={() => onStyleChange({ cardFormat: format.value })}
+                    onChange={() => onStyleChange({ cardFormat: format.value, activePreset: null })}
                   />
                   {format.label}
                 </label>
@@ -223,7 +273,7 @@ const CardStyleOptions = ({ cardStyle, onStyleChange, t }) => {
             <label className="input-label">{safeT.style?.imageFilter || 'Art Filter'}:</label>
             <select
               value={cardStyle.imageFilter || 'none'}
-              onChange={(e) => onStyleChange({ imageFilter: e.target.value })}
+              onChange={(e) => onStyleChange({ imageFilter: e.target.value, activePreset: null })}
               className="select-input"
             >
               {imageFilters.map((filter) => (
@@ -242,7 +292,7 @@ const CardStyleOptions = ({ cardStyle, onStyleChange, t }) => {
                 max="1"
                 step="0.1"
                 value={cardStyle.shadowIntensity || 0.4}
-                onChange={(e) => onStyleChange({ shadowIntensity: parseFloat(e.target.value) })}
+                onChange={(e) => onStyleChange({ shadowIntensity: parseFloat(e.target.value), activePreset: null })}
                 className="range-slider"
               />
               <span className="range-value">{cardStyle.shadowIntensity}</span>

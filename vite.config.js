@@ -1,11 +1,13 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import mkcert from "vite-plugin-mkcert";
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), mkcert()],
   server: {
     port: 5173,
     open: true,
+    https: true, // mkcert will handle this
     proxy: {
       "/spotify": {
         target: "https://accounts.spotify.com",

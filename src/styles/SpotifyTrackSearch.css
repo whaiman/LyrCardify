@@ -6,7 +6,7 @@
 .input-group {
     display: flex;
     gap: 8px;
-    background: var(--bg);
+    background: var(--input-bg);
     padding: 6px;
     border-radius: 16px;
     border: 2px solid var(--glass-border);

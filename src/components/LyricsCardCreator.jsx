@@ -6,6 +6,7 @@ import LyricsInput from './LyricsInput';
 import CardStyleOptions from './CardStyleOptions';
 import LyricsCardPreview from './LyricsCardPreview';
 import { fetchSpotifyTrackData } from '../services/spotifyApi';
+import { extractColorsFromImage } from '../utils/colorExtractor';
 import '../styles/LyricsCardCreator.css';
 
 const LyricsCardCreator = () => {
@@ -17,7 +18,6 @@ const LyricsCardCreator = () => {
     album: '',
     loaded: false,
   });
-  // ... (rest of state)
   const [lyrics, setLyrics] = useState('');
   const [cardStyle, setCardStyle] = useState({
     bgColor: '#191414',
@@ -32,6 +32,7 @@ const LyricsCardCreator = () => {
     shadowIntensity: 0.4,
     blur: true,
     textShadow: true,
+    activePreset: 'classic',
   });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
@@ -44,7 +45,7 @@ const LyricsCardCreator = () => {
       setError(t.creator.error);
       return;
     }
-    // ...
+    
     setIsLoading(true);
     setError('');
 
@@ -58,11 +59,42 @@ const LyricsCardCreator = () => {
           album: data.album,
           loaded: true,
         });
+        
+        // Auto extract colors on new track
+        if (data.image) {
+            const colors = await extractColorsFromImage(data.image);
+            setCardStyle(prev => ({
+                ...prev,
+                bgColor: colors.primary,
+                gradient: colors.secondary,
+                textColor: colors.text
+            }));
+        }
       }
     } catch (err) {
       setError(`${t.creator.fetchError}: ${err.message}`);
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleAutoColor = async () => {
+    if (trackData.image) {
+      setIsLoading(true);
+      try {
+        const colors = await extractColorsFromImage(trackData.image);
+        setCardStyle(prev => ({
+          ...prev,
+          bgColor: colors.primary,
+          gradient: colors.secondary,
+          textColor: colors.text,
+          activePreset: null
+        }));
+      } catch (err) {
+        console.error("Auto-color error:", err);
+      } finally {
+        setIsLoading(false);
+      }
     }
   };
 
@@ -74,37 +106,35 @@ const LyricsCardCreator = () => {
     setCardStyle((prevStyle) => ({ ...prevStyle, ...styleUpdates }));
   };
 
-  // ... (exportCard logic remains same)
+  const exportCard = async () => {
+    if (!cardRef.current) return;
 
-    const exportCard = async () => {
-      if (!cardRef.current) return;
+    try {
+      setIsLoading(true);
+      setDisableAnimations(true);
+      cardRef.current.scrollTop = 0;
 
-      try {
-        setIsLoading(true);
-        setDisableAnimations(true);
-        cardRef.current.scrollTop = 0;
+      await new Promise((resolve) => setTimeout(resolve, 100));
 
-        await new Promise((resolve) => setTimeout(resolve, 100));
+      const canvas = await html2canvas(cardRef.current, {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: null,
+        width: cardRef.current.offsetWidth,
+        height: cardRef.current.offsetHeight,
+      });
 
-        const canvas = await html2canvas(cardRef.current, {
-          scale: 2,
-          useCORS: true,
-          backgroundColor: null,
-          width: cardRef.current.offsetWidth,
-          height: cardRef.current.offsetHeight,
-        });
-
-        const link = document.createElement('a');
-        link.download = `${trackData.artist} - ${trackData.title} lyrics.png`;
-        link.href = canvas.toDataURL('image/png');
-        link.click();
-      } catch (err) {
-        setError(`Failed to export image: ${err.message}`);
-      } finally {
-        setIsLoading(false);
-        setDisableAnimations(false);
-      }
-    };
+      const link = document.createElement('a');
+      link.download = `${trackData.artist} - ${trackData.title} lyrics.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    } catch (err) {
+      setError(`Failed to export image: ${err.message}`);
+    } finally {
+      setIsLoading(false);
+      setDisableAnimations(false);
+    }
+  };
 
   return (
     <div className="lyrics-card-creator">
@@ -124,7 +154,12 @@ const LyricsCardCreator = () => {
 
         <section className="section">
           <h3>{t.creator.step3}</h3>
-          <CardStyleOptions cardStyle={cardStyle} onStyleChange={handleStyleChange} t={t} />
+          <CardStyleOptions 
+            cardStyle={cardStyle} 
+            onStyleChange={handleStyleChange} 
+            t={t} 
+            onAutoColor={handleAutoColor}
+          />
         </section>
 
         <button

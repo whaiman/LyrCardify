@@ -123,7 +123,6 @@ export async function fetchSpotifyTrackData(trackUrl) {
       artist: data.artists.map((artist) => artist.name).join(", "),
       album: data.album.name,
       image: data.album.images[0]?.url || null,
-      preview_url: data.preview_url,
       external_url: data.external_urls.spotify,
     };
   } catch (error) {
