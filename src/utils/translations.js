@@ -23,6 +23,7 @@ export const translations = {
       preview: "Preview",
       error: "Please enter a valid Spotify track URL",
       fetchError: "Failed to fetch track data",
+      loadPlaying: "🎵 Load Currently Playing",
     },
     style: {
       groups: {
@@ -139,6 +140,7 @@ export const translations = {
       preview: "Предпросмотр",
       error: "Пожалуйста, введите корректную ссылку Spotify",
       fetchError: "Ошибка получения данных трека",
+      loadPlaying: "🎵 Сейчас играет",
     },
     style: {
       groups: {
