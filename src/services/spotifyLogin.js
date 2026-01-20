@@ -1,9 +1,19 @@
 const SPOTIFY_CLIENT_ID =
-  localStorage.getItem("spotify_client_id")?.trim() ||
-  import.meta.env.VITE_SPOTIFY_CLIENT_ID?.trim();
+  import.meta.env.VITE_SPOTIFY_CLIENT_ID?.trim() ||
+  localStorage.getItem("spotify_client_id")?.trim();
 const REDIRECT_URI = window.location.origin + "/callback";
 
 export async function redirectToAuthCodeFlow() {
+  if (!SPOTIFY_CLIENT_ID) {
+    console.error(
+      "Spotify Client ID is missing! Check your environment variables or settings.",
+    );
+    alert(
+      "Spotify Client ID is not configured. Please check your Vercel environment variables or app settings.",
+    );
+    return;
+  }
+
   const verifier = generateCodeVerifier(128);
   const challenge = await generateCodeChallenge(verifier);
 

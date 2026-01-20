@@ -1,0 +1,12 @@
+{
+    "rewrites": [
+        {
+            "source": "/spotify/:path*",
+            "destination": "https://accounts.spotify.com/:path*"
+        },
+        {
+            "source": "/api/spotify/:path*",
+            "destination": "https://api.spotify.com/v1/:path*"
+        }
+    ]
+}

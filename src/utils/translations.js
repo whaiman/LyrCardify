@@ -114,6 +114,8 @@ export const translations = {
       step2: "Create a new app and copy the credentials",
       instruction:
         "Note: These keys are for your personal use and are not sent to any server.",
+      globalConfigActive:
+        "App configured by developer. No custom keys required.",
     },
   },
   ru: {
@@ -231,6 +233,8 @@ export const translations = {
       step2: "Создайте приложение и скопируйте ID и Secret",
       instruction:
         "Примечание: Данные используются только для ваших запросов и не передаются на сторонние серверы.",
+      globalConfigActive:
+        "Приложение настроено разработчиком. Ввод собственных ключей не требуется.",
     },
   },
 };

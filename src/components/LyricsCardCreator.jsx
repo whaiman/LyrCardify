@@ -1,41 +1,41 @@
-import React, { useState, useRef } from 'react';
-import html2canvas from 'html2canvas';
-import { useLanguage } from '../contexts/LanguageContext';
-import SpotifyTrackSearch from './SpotifyTrackSearch';
-import LyricsInput from './LyricsInput';
-import CardStyleOptions from './CardStyleOptions';
-import LyricsCardPreview from './LyricsCardPreview';
-import { fetchSpotifyTrackData } from '../services/spotifyApi';
-import { extractColorsFromImage } from '../utils/colorExtractor';
-import '../styles/LyricsCardCreator.css';
+import React, { useState, useRef } from "react";
+import html2canvas from "html2canvas";
+import { useLanguage } from "../contexts/LanguageContext";
+import SpotifyTrackSearch from "./SpotifyTrackSearch";
+import LyricsInput from "./LyricsInput";
+import CardStyleOptions from "./CardStyleOptions";
+import LyricsCardPreview from "./LyricsCardPreview";
+import { fetchSpotifyTrackData } from "../services/spotifyApi";
+import { extractColorsFromImage } from "../utils/colorExtractor";
+import "../styles/LyricsCardCreator.css";
 
 const LyricsCardCreator = () => {
   const { t } = useLanguage();
   const [trackData, setTrackData] = useState({
     image: null,
-    artist: '',
-    title: '',
-    album: '',
+    artist: "",
+    title: "",
+    album: "",
     loaded: false,
   });
-  const [lyrics, setLyrics] = useState('');
+  const [lyrics, setLyrics] = useState("");
   const [cardStyle, setCardStyle] = useState({
-    bgColor: '#191414',
-    gradient: '#1DB954',
-    bgMode: 'dynamic',
+    bgColor: "#191414",
+    gradient: "#1DB954",
+    bgMode: "dynamic",
     backgroundImage: null,
-    textColor: '#FFFFFF',
+    textColor: "#FFFFFF",
     fontSize: 16,
-    fontFamily: 'Inter, sans-serif',
-    cardFormat: 'square',
-    imageFilter: 'none',
+    fontFamily: "Inter, sans-serif",
+    cardFormat: "square",
+    imageFilter: "none",
     shadowIntensity: 0.4,
     blur: true,
     textShadow: true,
-    activePreset: 'classic',
+    activePreset: "classic",
   });
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [disableAnimations, setDisableAnimations] = useState(false);
 
   const cardRef = useRef(null);
@@ -45,9 +45,9 @@ const LyricsCardCreator = () => {
       setError(t.creator.error);
       return;
     }
-    
+
     setIsLoading(true);
-    setError('');
+    setError("");
 
     try {
       const data = await fetchSpotifyTrackData(trackUrl);
@@ -59,16 +59,16 @@ const LyricsCardCreator = () => {
           album: data.album,
           loaded: true,
         });
-        
+
         // Auto extract colors on new track
         if (data.image) {
-            const colors = await extractColorsFromImage(data.image);
-            setCardStyle(prev => ({
-                ...prev,
-                bgColor: colors.primary,
-                gradient: colors.secondary,
-                textColor: colors.text
-            }));
+          const colors = await extractColorsFromImage(data.image);
+          setCardStyle((prev) => ({
+            ...prev,
+            bgColor: colors.primary,
+            gradient: colors.secondary,
+            textColor: colors.text,
+          }));
         }
       }
     } catch (err) {
@@ -83,12 +83,12 @@ const LyricsCardCreator = () => {
       setIsLoading(true);
       try {
         const colors = await extractColorsFromImage(trackData.image);
-        setCardStyle(prev => ({
+        setCardStyle((prev) => ({
           ...prev,
           bgColor: colors.primary,
           gradient: colors.secondary,
           textColor: colors.text,
-          activePreset: null
+          activePreset: null,
         }));
       } catch (err) {
         console.error("Auto-color error:", err);
@@ -124,9 +124,9 @@ const LyricsCardCreator = () => {
         height: cardRef.current.offsetHeight,
       });
 
-      const link = document.createElement('a');
+      const link = document.createElement("a");
       link.download = `${trackData.artist} - ${trackData.title} lyrics.png`;
-      link.href = canvas.toDataURL('image/png');
+      link.href = canvas.toDataURL("image/png");
       link.click();
     } catch (err) {
       setError(`Failed to export image: ${err.message}`);
@@ -143,21 +143,29 @@ const LyricsCardCreator = () => {
 
         <section className="section">
           <h3>{t.creator.step1}</h3>
-          <SpotifyTrackSearch onFetchTrack={handleFetchTrack} isLoading={isLoading} t={t} />
+          <SpotifyTrackSearch
+            onFetchTrack={handleFetchTrack}
+            isLoading={isLoading}
+            t={t}
+          />
           {error && <div className="error-message">{error}</div>}
         </section>
 
         <section className="section">
           <h3>{t.creator.step2}</h3>
-          <LyricsInput onLyricsChange={handleLyricsChange} value={lyrics} t={t} />
+          <LyricsInput
+            onLyricsChange={handleLyricsChange}
+            value={lyrics}
+            t={t}
+          />
         </section>
 
         <section className="section">
           <h3>{t.creator.step3}</h3>
-          <CardStyleOptions 
-            cardStyle={cardStyle} 
-            onStyleChange={handleStyleChange} 
-            t={t} 
+          <CardStyleOptions
+            cardStyle={cardStyle}
+            onStyleChange={handleStyleChange}
+            t={t}
             onAutoColor={handleAutoColor}
           />
         </section>
@@ -173,7 +181,13 @@ const LyricsCardCreator = () => {
 
       <div className="preview-panel fade-in">
         <h2>Preview</h2>
-        <LyricsCardPreview ref={cardRef} trackData={trackData} lyrics={lyrics} cardStyle={cardStyle} disableAnimations={disableAnimations} />
+        <LyricsCardPreview
+          ref={cardRef}
+          trackData={trackData}
+          lyrics={lyrics}
+          cardStyle={cardStyle}
+          disableAnimations={disableAnimations}
+        />
       </div>
     </div>
   );
