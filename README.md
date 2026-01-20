@@ -1,107 +1,91 @@
 # LyrCardify
 
-LyrCardify is a web application that allows you to create beautiful, Spotify-inspired lyrics cards. Share your favorite song lyrics with stunning visuals, perfect for social media or personal collections.
+Turn your favorite lyrics into art. LyrCardify picks up where Spotify's "Share" button leaves off, giving you the creative freedom to design beautiful, high-quality lyrics cards that are truly yours and ready for your social feed.
+
+[![GitHub license](https://img.shields.io/github/license/whaiman/LyrCardify)](https://github.com/whaiman/LyrCardify/blob/main/LICENSE)
+[![React](https://img.shields.io/badge/React-19-blue?logo=react)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-6-purple?logo=vite)](https://vitejs.dev/)
 
 [Русская версия документации](README.ru.md)
 
 ## Table of Contents
 
-- [About](#about)
-- [Features](#features)
-- [Installation](#installation)
+- [What is LyrCardify](#what-is-lyrcardify)
+- [What you can do](#what-you-can-do)
+- [Getting Started](#getting-started)
+- [A Note on Spotify API](#a-note-on-spotify-api)
 - [Usage](#usage)
 - [Contributing](#contributing)
 - [License](#license)
 
-## About
+## What is LyrCardify?
 
-LyrCardify is built with **React** and **Vite**, offering a fast and modern development experience with Hot Module Replacement (HMR) and ESLint for clean code. This project is designed to help users create visually appealing lyrics cards with customizable backgrounds, fonts, and layouts, mimicking the aesthetic of Spotify's lyrics sharing feature.
+We believe that great song lyrics deserve to look just as good as they sound. LyrCardify is a simple yet powerful tool to create Spotify-style visuals that go far beyond the basic presets. Whether you want to capture a mood for your Instagram Story or save a meaningful verse for your personal collection, LyrCardify makes it effortless.
 
-## Features
+## What you can do
 
-- 🎵 Create Spotify-style lyrics cards with ease
-- 🖌️ Customize fonts, colors, and backgrounds
-- 📱 Responsive design for mobile and desktop
-- ⚡ Fast development with Vite's HMR
-- ✅ ESLint rules for consistent code quality
+- 🎵 **Magic Spotify Search:** Just paste a track link. We'll handle the rest—fetching the exact album art and track details in seconds.
+- 🎨 **Visual Harmony:** Want the background to match the cover? Use our "Auto-Color" feature to extract the perfect palette directly from the album art.
+- �️ **Deep Creative Control:** Customize typography, play with text shadows, or apply aesthetic filters like Duotone, Sepia, or Grayscale.
+- 🖼️ **Format for Anywhere:** Instantly switch between Square (1:1), Portrait (3:4), Landscape (4:3), or Story (9:16) layouts.
+- � **Make it Yours:** Don't want the album art? Upload your own background image to create something completely unique.
+- 💾 **High-Quality Export:** One click and your creation is ready as a high-res PNG.
 
-## Installation
+## Getting Started
 
-To get started with LyrCardify, follow these steps:
+To run LyrCardify locally:
 
-1. Clone the repository:
+1. **Grab the code:**
 
    ```bash
    git clone https://github.com/whaiman/LyrCardify.git
-   ```
-
-2. Navigate to the project directory:
-
-   ```bash
    cd LyrCardify
    ```
 
-3. Install dependencies:
+2. **Install what's needed:**
 
    ```bash
    npm install
    ```
 
-4. Create a `.env` file in the root directory and add the following environment variables:
+3. **Secure connection:**
+   The project uses HTTPS to ensure everything works smoothly with modern browser APIs. If you have `mkcert` installed, it will handle certificates automatically.
 
-   ```bash
-   VITE_SPOTIFY_CLIENT_ID=your_spotify_client_id
-   VITE_SPOTIFY_CLIENT_SECRET=your_spotify_client_secret
-   ```
-
-   Replace `your_spotify_client_id` and `your_spotify_client_secret` with your actual Spotify API credentials.
-
-5. Start the development server:
-
+4. **Launch:**
    ```bash
    npm run dev
    ```
 
+## A Note on Spotify API
+
+To fetch real track data, you'll need your own Spotify Client ID. You can easily set this up once in the **Settings** page of the app. Your keys stay in your browser and are never shared with us.
+
+Alternatively, you can create a `.env` file in the root:
+
+```env
+VITE_SPOTIFY_CLIENT_ID=your_id
+VITE_SPOTIFY_CLIENT_SECRET=your_secret
+```
+
+_Get your credentials at the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/)._
+
 ## Usage
 
-1. Open the application in your browser (usually at `http://localhost:5173`).
-2. Enter the lyrics you want to feature on your card.
-3. Customize the card's appearance using the provided options (e.g., fonts, colors, backgrounds).
-4. Save or share your lyrics card directly from the app.
-
-For production builds:
-
-```bash
-npm run build
-```
+1. **Search**: Paste a Spotify track link (e.g., `https://open.spotify.com/track/...`).
+2. **Lyrics**: Paste the lyrics you want to highlight.
+3. **Style**: Use the sidebar to adjust colors, fonts, and layout. Try the "Presets" for quick results!
+4. **Export**: Click "Export as Image" to save your card.
 
 ## Contributing
 
-Contributions are welcome! To contribute to LyrCardify:
+Got an idea to make LyrCardify better? We'd love to see it. Feel free to fork the repo and open a Pull Request.
 
-1. Fork the repository.
-2. Create a new branch:
-
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
-
-3. Make your changes and commit them:
-
-   ```bash
-   git commit -m "Add your feature description"
-   ```
-
-4. Push to your branch:
-
-   ```bash
-   git push origin feature/your-feature-name
-   ```
-
-5. Open a pull request.
-
-For major changes, please open an issue first to discuss what you would like to change.
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - feel free to build upon it!
