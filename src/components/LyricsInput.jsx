@@ -1,17 +1,15 @@
 import React from 'react';
 import '../styles/LyricsInput.css';
 
-const LyricsInput = ({ onLyricsChange }) => {
+const LyricsInput = ({ onLyricsChange, value, t }) => {
   return (
-    <div className="lyrics-input">
+    <div className="lyrics-input-container">
       <textarea
-        placeholder="Вставьте текст песни здесь..."
+        className="lyrics-textarea custom-scrollbar"
+        placeholder={t?.creator?.lyricsPlaceholder || "Paste lyrics here..."}
+        value={value}
         onChange={(e) => onLyricsChange(e.target.value)}
-        className="lyrics-textarea"
       />
-      <div className="lyrics-tips">
-        <small>Совет: Разделяйте строки и куплеты, как в оригинальной песне</small>
-      </div>
     </div>
   );
 };

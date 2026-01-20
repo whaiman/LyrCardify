@@ -1,41 +1,71 @@
-.lyrics-input {
-    width: 100%;
+/* LyricsInput.css */
+.lyrics-input-container {
+    background: var(--input-bg);
+    border: 2px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 2px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    height: 320px;
+    position: relative;
+    overflow: hidden;
+}
+
+.lyrics-input-container:focus-within {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(29, 185, 84, 0.1);
+    transform: translateY(-2px);
 }
 
 .lyrics-textarea {
     width: 100%;
-    height: 200px;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    height: 100%;
+    border: none;
+    border-radius: 14px;
+    padding: 20px;
+    background: transparent;
+    color: var(--text);
+    font-family: inherit;
     font-size: 1rem;
-    resize: vertical;
+    line-height: 1.6;
+    resize: none;
+    outline: none;
     box-sizing: border-box;
+    font-weight: 500;
 }
 
-@media (max-width: 768px) {
-    .lyrics-textarea {
-        height: 150px;
-        padding: 10px;
-        font-size: 0.9rem;
-    }
+.lyrics-textarea::placeholder {
+    color: var(--text);
+    opacity: 0.3;
 }
 
-@media (max-width: 480px) {
-    .lyrics-textarea {
-        height: 120px;
-        font-size: 0.85rem;
-    }
+/* Custom Scrollbar */
+.lyrics-input-container .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+}
+
+.lyrics-input-container .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.lyrics-input-container .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--glass-border);
+    border-radius: 10px;
+}
+
+.lyrics-input-container .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+   background: var(--primary-color);
 }
 
 .lyrics-tips {
-    margin-top: 8px;
-    color: #777;
-    font-size: 0.85rem;
+    margin-top: 12px;
+    color: var(--text);
+    font-size: 0.8rem;
+    opacity: 0.5;
+    font-weight: 500;
 }
 
 @media (max-width: 480px) {
-    .lyrics-tips {
-        font-size: 0.8rem;
+    .lyrics-input-container {
+        height: 260px;
     }
 }

@@ -2,29 +2,61 @@
 .lyrics-card-preview-container {
     display: flex;
     justify-content: center;
-    padding: 24px;
+    padding: 32px;
     width: 100%;
     box-sizing: border-box;
-    background: #121212;
-    /* Фон Spotify */
+    background: transparent;
 }
 
 .lyrics-card-preview {
     position: relative;
     width: 100%;
-    max-width: 480px;
+    max-width: 520px;
     overflow: hidden;
-    border-radius: 12px;
-    /* Скругление углов как в Spotify */
+    border-radius: 32px;
     display: flex;
     flex-direction: column;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    background: #121212;
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5);
+}
+
+.card-background-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover !important;
+    background-position: center !important;
+    z-index: 0;
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: black;
+    z-index: 1;
+    transition: opacity 0.3s ease;
+}
+
+.card-content-wrapper {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 24px;
+    box-sizing: border-box;
 }
 
 .lyrics-card-preview:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
 /* Форматы карточек */
@@ -33,11 +65,11 @@
 }
 
 .card-format-portrait {
-    aspect-ratio: 3 / 4;
+    aspect-ratio: 10 / 13;
 }
 
 .card-format-landscape {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 10;
 }
 
 .card-format-story {
@@ -45,159 +77,116 @@
 }
 
 /* Обложка трека */
-.track-cover {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    width: 100px;
-    height: 100px;
-    z-index: 10;
-    border-radius: 8px;
-    overflow: hidden;
-    transition: transform 0.3s ease;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+.track-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 32px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 16px;
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.track-cover:hover {
-    transform: scale(1.05);
+.track-cover {
+    width: 80px;
+    height: 80px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
 }
 
 .track-cover img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 8px;
-}
-
-@media (max-width: 480px) {
-    .track-cover {
-        width: 80px;
-        height: 80px;
-        top: 16px;
-        left: 16px;
-    }
 }
 
 /* Информация о треке */
 .track-info {
-    position: relative;
-    z-index: 2;
-    padding: 20px 20px 0 140px;
-    margin-bottom: 20px;
-}
-
-@media (max-width: 480px) {
-    .track-info {
-        padding: 16px 16px 0 112px;
-        margin-bottom: 16px;
-    }
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .now-playing {
     display: flex;
     align-items: center;
     gap: 6px;
-    font-size: 0.75rem;
-    font-weight: 700;
+    font-size: 0.7rem;
+    font-weight: 800;
     text-transform: uppercase;
-    color: #1DB954;
-    /* Зелёный Spotify */
-    margin-bottom: 8px;
-}
-
-.now-playing svg {
-    width: 16px;
-    height: 16px;
-    fill: #1DB954;
-}
-
-@media (max-width: 480px) {
-    .now-playing {
-        font-size: 0.7rem;
-    }
-
-    .now-playing svg {
-        width: 14px;
-        height: 14px;
-    }
+    letter-spacing: 0.12em;
+    color: #1ed760;
+    margin-bottom: 4px;
 }
 
 .track-title {
-    font-size: 1.4rem;
-    font-weight: 900;
-    line-height: 1.2;
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1.1;
     margin-bottom: 4px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-
-@media (max-width: 480px) {
-    .track-title {
-        font-size: 1.2rem;
-    }
+    letter-spacing: -0.02em;
+    color: inherit;
 }
 
 .track-artist {
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: 1.1rem;
+    font-weight: 700;
     opacity: 0.9;
     margin-bottom: 4px;
-}
-
-@media (max-width: 480px) {
-    .track-artist {
-        font-size: 0.9rem;
-    }
+    color: inherit;
 }
 
 .track-album {
-    font-size: 0.8rem;
-    font-weight: 400;
-    opacity: 0.7;
-}
-
-@media (max-width: 480px) {
-    .track-album {
-        font-size: 0.75rem;
-    }
+    font-size: 0.75rem;
+    font-weight: 500;
+    opacity: 0.6;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: inherit;
 }
 
 /* Текст песни */
 .lyrics-content {
-    position: relative;
-    z-index: 2;
-    padding: 20px;
-    text-align: center;
-    min-height: 200px;
-    max-height: 300px;
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     overflow-y: auto;
-}
-
-@media (max-width: 480px) {
-    .lyrics-content {
-        padding: 16px;
-        min-height: 160px;
-        max-height: 260px;
-    }
+    padding: 10px 0;
+    margin: 20px 0;
+    min-height: 100px;
+    color: inherit;
 }
 
 .lyrics-line {
-    line-height: 1.8;
+    width: 100%;
+    text-align: center;
+    line-height: 1.6;
+    margin-bottom: 0.4em;
     opacity: 0;
-    animation: slideIn 0.5s ease-out forwards;
-    font-weight: 600;
+    animation: slideIn 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: inherit;
 }
 
 @keyframes slideIn {
     from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(15px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
@@ -205,63 +194,63 @@
 }
 
 .empty-line {
-    height: 1.8em;
+    height: 1em;
 }
 
 .empty-lyrics {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    opacity: 0.5;
+    opacity: 0.4;
     font-size: 0.9rem;
     font-style: italic;
-}
-
-@media (max-width: 480px) {
-    .empty-lyrics {
-        font-size: 0.85rem;
-    }
+    font-weight: 500;
+    text-align: center;
+    color: inherit;
 }
 
 .no-track-data {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0.5;
     font-size: 0.9rem;
-    padding: 20px;
+    opacity: 0.5;
     font-style: italic;
-}
-
-@media (max-width: 480px) {
-    .no-track-data {
-        font-size: 0.85rem;
-        padding: 16px;
-    }
+    text-align: left;
+    color: inherit;
 }
 
 /* Кастомный скроллбар */
 .custom-scrollbar::-webkit-scrollbar {
-    width: 5px;
+    width: 4px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
+    background: transparent;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: #1DB954;
-    /* Зелёный Spotify */
-    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #1ed760;
+    background: rgba(255, 255, 255, 0.4);
 }
 
 .spotify-logo-container {
-    opacity: 0.5;
+    margin-top: auto;
+    display: flex;
+    justify-content: flex-start;
+    padding-top: 24px;
+    color: inherit;
+}
+
+@media (max-width: 600px) {
+    .lyrics-card-preview-container {
+        padding: 16px;
+    }
+    
+    .track-cover {
+        width: 64px;
+        height: 64px;
+    }
+    
+    .track-title {
+        font-size: 1.1rem;
+    }
 }
