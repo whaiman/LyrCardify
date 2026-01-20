@@ -7,6 +7,10 @@
         {
             "source": "/api/spotify/:path*",
             "destination": "https://api.spotify.com/v1/:path*"
+        },
+        {
+            "source": "/((?!api/spotify|spotify).*)",
+            "destination": "/index.html"
         }
     ]
 }
