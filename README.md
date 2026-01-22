@@ -5,7 +5,7 @@ Turn your favorite lyrics into art. LyrCardify picks up where Spotify's "Share" 
 [![GitHub license](https://img.shields.io/github/license/whaiman/LyrCardify)](https://github.com/whaiman/LyrCardify/blob/main/LICENSE)
 [![React](https://img.shields.io/badge/React-19-blue?logo=react)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-6-purple?logo=vite)](https://vitejs.dev/)
-[Official site](https://lyrcardify.vercel.app)
+[![Vercel](https://img.shields.io/badge/Vercel-%23000000.svg?logo=vercel&logoColor=white)](https://lyrcardify.vercel.app)
 
 [Русская версия документации](README.ru.md)
 
