@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://lyrcardify.vercel.app/sitemap.xml
