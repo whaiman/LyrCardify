@@ -10,6 +10,10 @@
 [![Vite](https://img.shields.io/badge/Vite-6-purple?logo=vite)](https://vitejs.dev/)
 [![Vercel](https://img.shields.io/badge/Vercel-%23000000.svg?logo=vercel&logoColor=white)](https://lyrcardify.vercel.app)
 
+# ⚠️ Внимание
+
+Из-за изменений в политике Spotify и требований к Premium-подписке для использования API, данный сайт больше не может функционировать и будет отключён.
+
 [English version](README.md)
 
 ## Оглавление
