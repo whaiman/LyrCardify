@@ -117,6 +117,11 @@ export const translations = {
       globalConfigActive:
         "App configured by developer. No custom keys required.",
     },
+    mobileWarning: {
+      title: "LyrCardify isn’t meant for mobile",
+      description: "Switch to desktop to create your card 💻",
+      hint: "Psst... You can already do this in the official Spotify mobile app!",
+    },
   },
   ru: {
     nav: {
@@ -235,6 +240,11 @@ export const translations = {
         "Примечание: Данные используются только для ваших запросов и не передаются на сторонние серверы.",
       globalConfigActive:
         "Приложение настроено разработчиком. Ввод собственных ключей не требуется.",
+    },
+    mobileWarning: {
+      title: "LyrCardify не предназначен для мобильных устройств",
+      description: "Перейдите на компьютер, чтобы создать свою карточку 💻",
+      hint: "Псс... Вы уже можете делать это в официальном приложении Spotify!",
     },
   },
 };

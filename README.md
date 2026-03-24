@@ -1,5 +1,8 @@
 # LyrCardify
 
+> [!IMPORTANT]
+> **This directory is for production deployment only. To run LyrCardify locally, please use the `main` directory of this repository.**
+
 Turn your favorite lyrics into art. LyrCardify picks up where Spotify's "Share" button leaves off, giving you the creative freedom to design beautiful, high-quality lyrics cards that are truly yours and ready for your social feed.
 
 [![GitHub license](https://img.shields.io/github/license/whaiman/LyrCardify)](https://github.com/whaiman/LyrCardify/blob/main/LICENSE)

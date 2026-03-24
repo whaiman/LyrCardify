@@ -1,5 +1,8 @@
 # LyrCardify
 
+> [!IMPORTANT]
+> **Эта папка предназначена только для деплоя. Для запуска LyrCardify локально, пожалуйста, используйте папку `main` в этом репозитории.**
+
 Превратите любимые строчки в искусство. LyrCardify дает ту свободу творчества, которой не хватает стандартной кнопке «Поделиться» в Spotify. Создавайте эстетичные карточки с текстом песен, которые не стыдно выложить в сторис или сохранить в коллекцию.
 
 [![GitHub license](https://img.shields.io/github/license/whaiman/LyrCardify)](https://github.com/whaiman/LyrCardify/blob/main/LICENSE)

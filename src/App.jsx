@@ -6,11 +6,13 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import About from './components/About';
 import Settings from './components/Settings';
+import MobileWarning from './components/MobileWarning';
 import './App.css';
 
 function App() {
   return (
     <div className="app-container">
+      <MobileWarning />
       <Header />
       <main className="main-content">
         <Routes>
